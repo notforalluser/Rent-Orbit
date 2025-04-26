@@ -30,7 +30,7 @@ function TenantSettings() {
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8000/api/tenants/profile',{
+        const response = await axios.get('https://rent-orbit-backend.onrender.com/api/tenants/profile',{
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -88,7 +88,7 @@ function TenantSettings() {
         formDataToSend.append('profileImage', formData.profileImage);
       }
 
-      await axios.put('http://localhost:8000/api/tenants/profile', formDataToSend, {
+      await axios.put('https://rent-orbit-backend.onrender.com/api/tenants/profile', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
