@@ -3,7 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu } from "lucide-react";
+import { 
+  Menu, 
+  Home, 
+  Bell, 
+  Settings, 
+  User, 
+  Layers, 
+  PlusCircle, 
+  DoorClosed,
+  ChevronRight,
+  ClipboardList,
+  MessageSquare,
+  FileText,
+  HelpCircle,
+  Calendar,
+  Star
+} from "lucide-react";
 import TenantDashboard from "./Tenant/TenantDashboard";
 import LandlordDashboard from "./Landlord/LandlordDashboard";
 import TenantNotifications from "./Tenant/TenantNotifications";
@@ -30,6 +46,17 @@ const DashboardPage = () => {
   const [requestCount, setRequestCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // Section titles with icons for mobile header
+  const sectionTitles = {
+    dashboard: { title: "Dashboard", icon: <Home size={20} /> },
+    notifications: { title: "Notifications", icon: <Bell size={20} /> },
+    requests: { title: "Requests", icon: <ClipboardList size={20} /> },
+    settings: { title: "Settings", icon: <Settings size={20} /> },
+    profile: { title: "Profile", icon: <User size={20} /> },
+    addRoom: { title: "Add Room", icon: <PlusCircle size={20} /> },
+    myRoom: { title: "My Rooms", icon: <DoorClosed size={20} /> }
+  };
+
   const fetchNotificationCount = async (type) => {
     try {
       const response = await axios.get(
@@ -49,11 +76,9 @@ const DashboardPage = () => {
     }
   };
 
-  // Define fetchRequestCount before it's used
   const fetchRequestCount = async (type) => {
     try {
       if (type === "landlord") {
-        // For landlord, get sum of unread requests and complaints
         const [requestsRes, complaintsRes] = await Promise.all([
           axios.get("https://rent-orbit-backend.onrender.com/api/requests/unread/count", {
             headers: { Authorization: `Bearer ${token}` },
@@ -65,7 +90,6 @@ const DashboardPage = () => {
         const total = requestsRes.data.unreadCount + complaintsRes.data.unreadCount;
         setRequestCount(total);
       } else {
-        // For tenant, get total room requests
         const response = await axios.get("https://rent-orbit-backend.onrender.com/api/requests", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -127,17 +151,9 @@ const DashboardPage = () => {
           <LandlordProfile />
         );
       case "addRoom":
-        return (
-          <div>
-            <LandLordAddRoom />
-          </div>
-        );
+        return <LandLordAddRoom />;
       case "myRoom":
-        return (
-          <div>
-            <LandlordRoomsList />
-          </div>
-        );
+        return <LandlordRoomsList />;
       default:
         return null;
     }
@@ -154,18 +170,22 @@ const DashboardPage = () => {
 
   const themeColors = {
     tenant: {
-      primary: "bg-orange-600",
-      hover: "hover:bg-orange-700",
-      text: "text-orange-600",
-      border: "border-orange-600",
+      primary: "bg-orange-500",
+      hover: "hover:bg-orange-600",
+      text: "text-orange-500",
+      border: "border-orange-500",
       light: "bg-orange-100",
+      gradient: "from-orange-400 to-orange-600",
+      dark: "bg-orange-700"
     },
     landlord: {
-      primary: "bg-purple-600",
-      hover: "hover:bg-purple-700",
-      text: "text-purple-600",
-      border: "border-purple-600",
+      primary: "bg-purple-500",
+      hover: "hover:bg-purple-600",
+      text: "text-purple-500",
+      border: "border-purple-500",
       light: "bg-purple-100",
+      gradient: "from-purple-400 to-purple-600",
+      dark: "bg-purple-700"
     },
   };
 
@@ -192,9 +212,9 @@ const DashboardPage = () => {
         {mobileSidebarOpen && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            className="fixed inset-0 bg-black z-40 md:hidden"
             onClick={() => setMobileSidebarOpen(false)}
           />
         )}
@@ -208,7 +228,7 @@ const DashboardPage = () => {
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`fixed inset-y-0 left-0 w-64 z-50 ${currentTheme.primary} shadow-lg md:hidden`}
+            className={`fixed inset-y-0 left-0 w-64 z-50 bg-white shadow-xl md:hidden`}
           >
             <Sidebar
               userType={userType}
@@ -230,31 +250,46 @@ const DashboardPage = () => {
 
       {/* Main Content */}
       <div
-        className={`flex-1 px-4 overflow-y-auto h-screen transition-all duration-300 ${sidebarCollapsed ? "md:ml-20" : "md:ml-64"
+        className={`flex-1 overflow-y-auto h-screen transition-all duration-300 ${sidebarCollapsed ? "md:ml-20" : "md:ml-64"
           }`}
       >
         {/* Mobile Header */}
-        <header className="md:hidden flex items-center justify-between py-4">
-          <button
-            onClick={toggleMobileSidebar}
-            className={`p-2 rounded-lg ${currentTheme.text}`}
-          >
-            <Menu size={24} />
-          </button>
-          <h1 className="text-xl font-bold capitalize">
-            {selectedSection.replace(/([A-Z])/g, ' $1').trim()}
-          </h1>
-          <div className="w-8"></div> {/* Spacer for alignment */}
+        <header className="md:hidden sticky top-0 z-20 bg-white shadow-sm">
+          <div className="flex items-center justify-between py-4 px-2">
+            <button
+              onClick={toggleMobileSidebar}
+              className={`p-2 rounded-lg ${currentTheme.text}`}
+            >
+              <Menu size={24} />
+            </button>
+            <div className="flex items-center gap-2">
+              {sectionTitles[selectedSection]?.icon}
+              <h1 className="text-xl font-bold capitalize">
+                {sectionTitles[selectedSection]?.title || selectedSection}
+              </h1>
+            </div>
+            <div className="w-8"></div>
+          </div>
         </header>
 
         {/* Content */}
         <main className="py-4">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className={`animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 ${currentTheme.border}`}></div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                className={`rounded-full h-12 w-12 border-t-2 border-b-2 ${currentTheme.border}`}
+              ></motion.div>
             </div>
           ) : (
-            renderSection()
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {renderSection()}
+            </motion.div>
           )}
           {userType === "tenant" && (
             <VisitConfirmationPopup token={token} userType={userType} />
