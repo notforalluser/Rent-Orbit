@@ -66,11 +66,11 @@ const getRequests = asyncHandler(async (req, res) => {
     if (userType === "tenant") {
         requests = await Request.find({ tenant: id })
             .populate("landlord", "name email phone")
-            .populate("room", "accommodation roomType address rent");
+            .populate("room");
     } else if (userType === "landlord") {
         requests = await Request.find({ landlord: id })
             .populate("tenant", "name email phone")
-            .populate("room", "accommodation roomType address rent");
+            .populate("room");
     } else {
         return res.status(403).json({ message: "Invalid user type" });
     }
