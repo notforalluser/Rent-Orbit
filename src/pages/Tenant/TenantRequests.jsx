@@ -310,17 +310,7 @@ function TenantRequests() {
                       <div className="absolute top-3 left-3">
                         {getStatusBadge(request.status)}
                       </div>
-                      <motion.div
-                        whileHover={{ opacity: 1 }}
-                        className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center"
-                      >
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          className="bg-white bg-opacity-80 rounded-full p-2 shadow-lg"
-                        >
-                          <ChevronRight className="text-blue-600" />
-                        </motion.div>
-                      </motion.div>
+                      
                     </motion.div>
 
                     {/* Room Specifications - Grid Layout */}
