@@ -72,7 +72,7 @@ function TenantRequests() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8000/api/requests', {
+      const response = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -96,7 +96,7 @@ function TenantRequests() {
   const handleCancelRequest = async (requestId) => {
     try {
       await axios.put(
-        `http://localhost:8000/api/requests/${requestId}`,
+        `https://rent-orbit-backend.onrender.com/api/requests/${requestId}`,
         { action: "tenant-cancel" },
         {
           headers: {

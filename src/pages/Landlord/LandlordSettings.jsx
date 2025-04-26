@@ -21,7 +21,7 @@ function LandlordSettings() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notification, setNotification] = useState({
     show: false,
-    type: '', // 'success' or 'error'
+    type: '',
     message: ''
   });
 
@@ -30,7 +30,7 @@ function LandlordSettings() {
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8000/api/landlord/profile',{
+        const response = await axios.get('https://rent-orbit-backend.onrender.com/api/landlord/profile',{
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -88,7 +88,7 @@ function LandlordSettings() {
         formDataToSend.append('profileImage', formData.profileImage);
       }
 
-      await axios.put('http://localhost:8000/api/landlord/profile', formDataToSend, {
+      await axios.put('https://rent-orbit-backend.onrender.com/api/landlord/profile', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

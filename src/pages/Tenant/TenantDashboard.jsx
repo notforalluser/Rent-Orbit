@@ -71,7 +71,7 @@ const TenantDashboard = () => {
             }
           });
 
-          const response = await axios.get(`http://localhost:8000/api/room/search?${params.toString()}`);
+          const response = await axios.get(`https://rent-orbit-backend.onrender.com/api/room/search?${params.toString()}`);
           setProperties(response.data.data || []);
           setFilteredProperties(response.data.data || []);
           setCurrentPage(1);
@@ -94,7 +94,7 @@ const TenantDashboard = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/requests', {
+        const response = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
         });
         setRequests(response.data);
@@ -132,7 +132,7 @@ const TenantDashboard = () => {
   const cancelRequest = async (id) => {
     try {
       await axios.put(
-        `http://localhost:8000/api/requests/${id}`,
+        `https://rent-orbit-backend.onrender.com/api/requests/${id}`,
         { action: "tenant-cancel" },
         {
           headers: {
@@ -142,7 +142,7 @@ const TenantDashboard = () => {
       );
 
       // Refresh requests
-      const response = await axios.get('http://localhost:8000/api/requests', {
+      const response = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -167,7 +167,7 @@ const TenantDashboard = () => {
   const confirmRequest = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/api/requests",
+        "https://rent-orbit-backend.onrender.com/api/requests",
         {
           roomId: selectedProperty._id,
           visitDate,
@@ -182,7 +182,7 @@ const TenantDashboard = () => {
       );
 
       // Refresh requests
-      const response = await axios.get('http://localhost:8000/api/requests', {
+      const response = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`

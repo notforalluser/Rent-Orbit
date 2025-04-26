@@ -119,7 +119,7 @@ function LandlordNotifications() {
     const fetchNotifications = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8000/api/notifications/landlord', {
+        const response = await axios.get('https://rent-orbit-backend.onrender.com/api/notifications/landlord', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -187,7 +187,7 @@ function LandlordNotifications() {
 
   const markAsRead = async (notificationId) => {
     try {
-      await axios.put(`http://localhost:8000/api/notifications/${notificationId}/read`, {}, {
+      await axios.put(`https://rent-orbit-backend.onrender.com/api/notifications/${notificationId}/read`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -217,7 +217,7 @@ function LandlordNotifications() {
     }
 
     try {
-      await axios.delete(`http://localhost:8000/api/notifications/delete/${notificationId}`, {
+      await axios.delete(`https://rent-orbit-backend.onrender.com/api/notifications/delete/${notificationId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

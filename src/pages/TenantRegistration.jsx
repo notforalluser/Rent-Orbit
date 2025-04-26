@@ -97,7 +97,7 @@ const TenantRegistration = () => {
     
     try {
       if (isLogin) {
-        const response = await axios.post("http://localhost:8000/api/tenants/login", {
+        const response = await axios.post("https://rent-orbit-backend.onrender.com/api/tenants/login", {
           email: formData.email,
           password: formData.password,
         });
@@ -112,7 +112,7 @@ const TenantRegistration = () => {
         setNotification({ message: 'Login successful! Redirecting...', type: 'success' });
         setTimeout(() => navigate("/dashboard"), 1500);
       } else {
-        await axios.post("http://localhost:8000/api/tenants/register", formData);
+        await axios.post("https://rent-orbit-backend.onrender.com/api/tenants/register", formData);
         setNotification({ 
           message: 'Registration successful! Please login.', 
           type: 'success' 

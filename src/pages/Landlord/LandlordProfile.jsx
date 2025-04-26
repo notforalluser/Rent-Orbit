@@ -19,7 +19,7 @@ import axios from 'axios';
 import PreLoader from '../../components/PreLoader';
 import ErrorHandler from '../../components/ErrorHandler';
 import { motion } from 'framer-motion';
-import TenantListModal from '../../components/Landlord/TenantListModal';
+// import TenantListModal from '../../components/Landlord/TenantListModal';
 
 const LandlordProfile = () => {
   const token = localStorage.getItem('token');
@@ -30,7 +30,7 @@ const LandlordProfile = () => {
 
   const fetchLandlordProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/landlord/profile', {
+      const response = await axios.get('https://rent-orbit-backend.onrender.com/api/landlord/profile', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`

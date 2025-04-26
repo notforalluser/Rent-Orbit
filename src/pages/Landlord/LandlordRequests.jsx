@@ -31,7 +31,7 @@ const LandlordRequests = () => {
         const token = localStorage.getItem('token');
 
         // Fetch room requests
-        const requestsResponse = await axios.get('http://localhost:8000/api/requests', {
+        const requestsResponse = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -39,7 +39,7 @@ const LandlordRequests = () => {
         });
 
         // Fetch maintenance complaints
-        const complaintsResponse = await axios.get('http://localhost:8000/api/complaints/landlord', {
+        const complaintsResponse = await axios.get('https://rent-orbit-backend.onrender.com/api/complaints/landlord', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -62,8 +62,8 @@ const LandlordRequests = () => {
     try {
       const token = localStorage.getItem('token');
       const endpoint = isMaintenance
-        ? `http://localhost:8000/api/complaints/${requestId}/mark-read`
-        : `http://localhost:8000/api/requests/${requestId}/mark-read`;
+        ? `https://rent-orbit-backend.onrender.com/api/complaints/${requestId}/mark-read`
+        : `https://rent-orbit-backend.onrender.com/api/requests/${requestId}/mark-read`;
 
       await axios.put(
         endpoint,
@@ -111,7 +111,7 @@ const LandlordRequests = () => {
       if (action === 'approve' || action === 'landlord-cancel') {
         // Handle room request status change
         await axios.put(
-          `http://localhost:8000/api/requests/${id}`,
+          `https://rent-orbit-backend.onrender.com/api/requests/${id}`,
           { action },
           {
             headers: {
@@ -136,7 +136,7 @@ const LandlordRequests = () => {
         const status = action === 'in-progress' ? 'in-progress' : 'resolved';
 
         await axios.put(
-          `http://localhost:8000/api/complaints/${id}/status`,
+          `https://rent-orbit-backend.onrender.com/api/complaints/${id}/status`,
           { status },
           {
             headers: {
@@ -171,7 +171,7 @@ const LandlordRequests = () => {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:8000/api/complaints/landlord/${id}`,
+        `https://rent-orbit-backend.onrender.com/api/complaints/landlord/${id}`,
         {
           headers: {
             "Content-Type": "application/json",

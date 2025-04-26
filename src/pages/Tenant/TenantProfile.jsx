@@ -33,7 +33,7 @@ const TenantProfile = () => {
 
   const fetchTenantProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/tenants/profile', {
+      const response = await axios.get('https://rent-orbit-backend.onrender.com/api/tenants/profile', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -51,7 +51,7 @@ const TenantProfile = () => {
       setRoomError(null);
       
       // Fetch tenant requests
-      const requestsResponse = await axios.get('http://localhost:8000/api/requests', {
+      const requestsResponse = await axios.get('https://rent-orbit-backend.onrender.com/api/requests', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
@@ -66,7 +66,7 @@ const TenantProfile = () => {
       if (completedRequest && completedRequest.room) {
         try {
           // Fetch complete room details
-          const roomResponse = await axios.get(`http://localhost:8000/api/room/${completedRequest.room._id}`, {
+          const roomResponse = await axios.get(`https://rent-orbit-backend.onrender.com/api/room/${completedRequest.room._id}`, {
             headers: {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${token}`
@@ -113,7 +113,7 @@ const TenantProfile = () => {
 
   const handleSubmitComplaint = async (complaintData) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/complaints', {
+      const response = await axios.post('https://rent-orbit-backend.onrender.com/api/complaints', {
         roomId: complaintData.roomId,
         type: complaintData.type,
         description: complaintData.description

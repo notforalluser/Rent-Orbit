@@ -31,7 +31,7 @@ const LandlordDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:8000/api/landlord/dashboard', {
+      const response = await fetch('https://rent-orbit-backend.onrender.com/api/landlord/dashboard', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

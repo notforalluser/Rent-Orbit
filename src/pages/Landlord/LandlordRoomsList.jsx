@@ -173,7 +173,7 @@ const RoomDetails = ({ room, onBack, onDelete }) => {
       const newStatus = !currentStatus;
       
       await axios.patch(
-        `http://localhost:8000/api/room/${room._id}/status`,
+        `https://rent-orbit-backend.onrender.com/api/room/${room._id}/status`,
         { isActive: newStatus },
         {
           headers: {
@@ -525,7 +525,7 @@ const LandlordRoomList = () => {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:8000/api/room', {
+        const response = await axios.get('https://rent-orbit-backend.onrender.com/api/room', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -567,7 +567,7 @@ const LandlordRoomList = () => {
   const handleDeleteRoom = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8000/api/room/${selectedRoom._id}`, {
+      await axios.delete(`https://rent-orbit-backend.onrender.com/api/room/${selectedRoom._id}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`

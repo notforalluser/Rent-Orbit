@@ -273,7 +273,7 @@ const LandLordAddRoom = () => {
 
       // Make API call
       const response = await axios.post(
-        'http://localhost:8000/api/room',
+        'https://rent-orbit-backend.onrender.com/api/room',
         formDataToSend,
         {
           headers: {

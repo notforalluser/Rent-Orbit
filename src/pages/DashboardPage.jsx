@@ -33,7 +33,7 @@ const DashboardPage = () => {
   const fetchNotificationCount = async (type) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/notifications/unread/count`,
+        `https://rent-orbit-backend.onrender.com/api/notifications/unread/count`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,10 +55,10 @@ const DashboardPage = () => {
       if (type === "landlord") {
         // For landlord, get sum of unread requests and complaints
         const [requestsRes, complaintsRes] = await Promise.all([
-          axios.get("http://localhost:8000/api/requests/unread/count", {
+          axios.get("https://rent-orbit-backend.onrender.com/api/requests/unread/count", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:8000/api/complaints/unread/count", {
+          axios.get("https://rent-orbit-backend.onrender.com/api/complaints/unread/count", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -66,7 +66,7 @@ const DashboardPage = () => {
         setRequestCount(total);
       } else {
         // For tenant, get total room requests
-        const response = await axios.get("http://localhost:8000/api/requests", {
+        const response = await axios.get("https://rent-orbit-backend.onrender.com/api/requests", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const filteredRequests = response.data.filter(req => req.status !== 'completed');

@@ -15,7 +15,7 @@ const VisitConfirmationPopup = ({ token, userType }) => {
     const fetchRequestData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/requests/requests-for-tenant",
+          "https://rent-orbit-backend.onrender.com/api/requests/requests-for-tenant",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setRequest(res.data?.[0] || null);
@@ -36,7 +36,7 @@ const VisitConfirmationPopup = ({ token, userType }) => {
   const handleYesClick = async (id) => {
     try {
       await axios.put(
-        `http://localhost:8000/api/requests/${id}`,
+        `https://rent-orbit-backend.onrender.com/api/requests/${id}`,
         { action: 'tenant-confirm' },
         {
           headers: {
@@ -56,7 +56,7 @@ const VisitConfirmationPopup = ({ token, userType }) => {
     setIsSubmitting(true);
     try {
       await axios.post(
-        `http://localhost:8000/api/requests/reject-request/${request._id}`,
+        `https://rent-orbit-backend.onrender.com/api/requests/reject-request/${request._id}`,
         { reason },
         { headers: { Authorization: `Bearer ${token}` } }
       );
