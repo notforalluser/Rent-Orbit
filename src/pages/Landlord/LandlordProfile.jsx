@@ -84,7 +84,7 @@ const LandlordProfile = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen  px-4 md:p-4 lg:px-8"
+      className="min-h-screen px-1 md:p-4 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
         {/* Profile Header */}

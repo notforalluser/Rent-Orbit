@@ -272,7 +272,7 @@ function LandlordNotifications() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:p-6">
+    <div className="max-w-6xl mx-auto px-1 md:p-6">
       {notification.message && (
         <Notification
           type={notification.type}

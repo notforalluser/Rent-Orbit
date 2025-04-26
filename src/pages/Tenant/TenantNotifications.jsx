@@ -150,23 +150,6 @@ function TenantNotifications() {
     }
   };
 
-  const markAllAsRead = async () => {
-    try {
-      await axios.put('https://rent-orbit-backend.onrender.com/api/notifications/mark-all-read', {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      
-      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-      setUnreadCount(0);
-      setNotification({ message: 'All notifications marked as read', type: 'success' });
-    } catch (err) {
-      console.error('Error marking all notifications as read:', err);
-      setNotification({ message: 'Failed to mark all as read', type: 'error' });
-    }
-  };
-
   const handleNotificationClick = async (notification) => {
     setSelectedNotification(notification);
     setShowModal(true);
@@ -218,7 +201,7 @@ function TenantNotifications() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:p-6">
+    <div className="max-w-6xl mx-auto px-1 md:p-6">
       {notification.message && (
         <Notification
           type={notification.type}

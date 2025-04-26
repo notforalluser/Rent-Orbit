@@ -235,7 +235,7 @@ const RoomDetails = ({ room, onBack, onDelete }) => {
       <div className="border-b border-gray-200 px-4 flex items-center bg-gradient-to-r from-purple-100 to-white">
         <button
           onClick={onBack}
-          className="mr-3 p-1 rounded-full hover:bg-gray-100 transition-colors duration-200"
+          className="mr-3 p-3 rounded-full hover:bg-gray-100 transition-colors duration-200"
         >
           <ArrowLeft className="h-6 w-6 text-gray-600" />
         </button>
@@ -604,7 +604,7 @@ const LandlordRoomList = () => {
       )}
 
       {view === 'list' ? (
-        <div className="max-w-6xl mx-auto px-4 md:p-6">
+        <div className="max-w-6xl mx-auto px-1 md:p-6">
 
           {rooms.length === 0 ? (
             <div className="text-center py-10 bg-white rounded-lg border border-gray-200">

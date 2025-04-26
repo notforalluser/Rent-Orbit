@@ -70,7 +70,7 @@ const LandlordDashboard = () => {
 
   return (
     <motion.div
-      className="min-h-screen bg-gray-50 px-4 md:p-8"
+      className="min-h-screen bg-gray-50 px-2 md:p-8"
       initial="hidden"
       animate="visible"
       variants={fadeIn}

@@ -132,7 +132,7 @@ function LandlordSettings() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -50, opacity: 0 }}
-          className={`fixed top-4 right-4 z-50 p-4 rounded-md shadow-lg ${
+          className={`fixed top-4 right-4 z-50 p-2 rounded-md shadow-lg ${
             notification.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
           }`}
         >

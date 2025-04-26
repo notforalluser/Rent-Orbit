@@ -255,7 +255,7 @@ const TenantDashboard = () => {
   // Render loading or error states
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+      <div className="min-h-screen bg-gray-50 p-1 md:p-8">
         <SearchSection
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
