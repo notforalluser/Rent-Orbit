@@ -297,7 +297,6 @@ function TenantRequests() {
                     <motion.div
                       whileHover={{ scale: 0.98 }}
                       className="relative rounded-lg overflow-hidden bg-gray-100 aspect-video cursor-pointer"
-                      onClick={() => navigateToRoom(request.room._id)}
                     >
                       <img
                         src={request.room.photos?.[0] || 'https://assets-news.housing.com/news/wp-content/uploads/2023/03/24153828/exterior-design-shutterstock_1932966368-1200x700-compressed.jpg'}
@@ -310,7 +309,6 @@ function TenantRequests() {
                       <div className="absolute top-3 left-3">
                         {getStatusBadge(request.status)}
                       </div>
-                      
                     </motion.div>
 
                     {/* Room Specifications - Grid Layout */}
